@@ -26,6 +26,8 @@ let teams = [
 function fetchFootballTeam(){
     
     let selectElement = document.getElementById("AmericanFootballTeam");
+    let theOption = new Option("Select a team","");
+    selectElement.appendChild(theOption);
     //console.log(selectElement);
     for(let i in teams)
     {
@@ -54,13 +56,19 @@ function selectedValue(e){
   let selectElement = document.getElementById("AmericanFootballTeam");
   selectVal = selectElement.value;
   console.log(selectVal);
-  let team_details = teams.findIndex(findTeam);
-  console.log(team_details);
-  if(team_details > -1){
-    document.getElementById("selectedOption").innerHTML = `You selected the ${teams[team_details].name} who play in ${teams[team_details].locatedIn}`;
+  if(selectVal === ""){
+    document.getElementById("selectedOption").innerHTML = ``;
+    console.log("select a team");
   }
   else{
-    document.getElementById("selectedOption").innerHTML = "Error fetching";
+    let team_details = teams.findIndex(findTeam);
+    console.log(team_details);
+    if(team_details > -1){
+      console.log(`${teams[team_details].name}`);
+      document.getElementById("selectedOption").innerHTML = `You selected the ${teams[team_details].name} who play in ${teams[team_details].locatedIn}`;
+    }
+    else{
+      document.getElementById("selectedOption").innerHTML = "Error fetching";
+    }
   }
-  
 }
